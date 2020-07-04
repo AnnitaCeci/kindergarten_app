@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     #list of resources
     resources :activities
+    resources :babies
   end
 end
