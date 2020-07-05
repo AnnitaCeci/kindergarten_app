@@ -16,13 +16,24 @@ class Api::ActivityLogsController < ApplicationController
     end
   end
 
+  def update
+    puts params.to_s
+    @activity_log = ActivityLog.find(params[:id])
+    if @activity_log
+      @activity_log.update(activity_log_params)
+      render json: {message: 'Activity log successfully updated.'}, status: 200
+    else
+      render json: {error: 'Unable to update Activity log.'}, status: 400
+    end
+  end
 
   private
 
-  
+
   def activity_log_params
-    params.require(:activity_log).permit(:activity_id, :baby_id, :assistant_id, :start_time)
+    params.require(:activity_log).permit(:activity_id, :baby_id, :assistant_id, :start_time, :stop_time, :duration, :comments)
   end
+
 
 
 end
