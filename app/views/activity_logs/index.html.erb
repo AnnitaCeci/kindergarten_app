@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Log de Actividades</h2>
+
+<div class="row">
+  <div class="col">
+    <label>Bebés</label><br/>
+    <%= select("post", "baby_id", Baby.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Seleccionar Bebé'}) %>
+  </div>
+  <div class="col">
+    <label>Asistentes</label><br/>
+    <%= select("post", "assistant_id", Assistant.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Seleccionar Asistente'}) %>
+  </div>
+  <div class="col">
+    <label>Estatus</label><br/>
+    <%= select("post", "status",ActivityLogsHelper::STATUS , {prompt: 'Seleccionar Estatus'}) %>
+  </div>
+  <div class="col">
+    <button type="button" class="btn btn-primary"> Filtrar </button>
+  </div>
+</div>
+
+  <br/>
+
+      <table class="table ">
+        <thead>
+        <tr>
+          <th>Bebé</th>
+          <th>Asistente</th>
+          <th>Actividad</th>
+          <th>Inicio</th>
+          <th>Estatus</th>
+          <th>Duración</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @activity_logs.each { |activity| %>
+        <tr>
+          <td><%= activity.baby.name %></td>
+          <td><%= activity.assistant.name %></td>
+          <td><%= activity.activity.name %></td>
+          <td><%= activity.start_time %></td>
+          <td><%= status(activity.duration) %></td>
+          <td><%= duration(activity.duration) %></td>
+        </tr>
+        <% } %>
+        </tbody>
+      </table>
+  </div>
+</body>
+</html>
