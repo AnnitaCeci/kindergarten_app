@@ -38,6 +38,7 @@ gem 'validates_timeliness', '~> 5.0.0.beta1'
 gem 'devise'
 gem 'toastr-rails'
 gem 'rails_admin', '~> 2.0'
+gem 'cancancan'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

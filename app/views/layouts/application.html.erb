@@ -15,6 +15,10 @@
       <a class="navbar-brand" href="/">Kindergarten App</a>
       <form class="form-inline">
         <% if user_signed_in? %>
+          <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+            <%= link_to activity_logs_path,  class: 'btn btn-outline-primary' do %>Activity Logs<% end %>
+            <%= link_to('Dashboard', rails_admin_path, class: 'btn btn-outline-primary') %>
+          <% end %>
           <%= link_to('Profile', edit_user_registration_path, class: 'btn btn-outline-primary') %>
           <div style="padding-left: 10px;">
           <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "btn btn-outline-success") %>
