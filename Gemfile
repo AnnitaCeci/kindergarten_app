@@ -35,6 +35,9 @@ gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'validates_timeliness', '~> 5.0.0.beta1'
+gem 'devise'
+gem 'toastr-rails'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
