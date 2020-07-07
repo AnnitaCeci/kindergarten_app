@@ -1,6 +1,13 @@
-# frozen_string_literal: true
 class ActivityLog < ApplicationRecord
+
+  validates :activity_id, presence: true, on: :create
+  validates :assistant_id, presence: true, on: :create
+  validates :baby_id, presence: true, on: :create
+  validates :start_time, presence: true, on: :create
   validates :stop_time, presence: true, on: :update
+
+  validates_datetime :stop_time, :on => :update, on_or_after: lambda { :start_time }
+  validates_datetime :start_time, :on => :create, on_or_after: lambda { Time.now() }
 
 
   belongs_to :baby
