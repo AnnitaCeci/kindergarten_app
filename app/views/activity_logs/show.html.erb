@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Log de Actividades</h2>
+
+  <h1><%= @activity_log.baby.name %></h1>
+
+  <p>
+    <strong>Price: </strong> $<%= @activity_log.baby.name %><br />
+    <strong>Subject :</strong> <%= @activity_log.assistant.name %><br />
+    <strong>Created Date:</strong> <%= @activity_log.activity.name %><br />
+    <strong>Price: </strong> $<%= format_date(@activity_log.start_time) %><br />
+    <strong>Subject :</strong> <%= status(@activity_log.duration) %><br />
+    <strong>Created Date:</strong> <%= duration(@activity_log.duration) %><br />
+  </p>
+  <hr />
+
+  <%= link_to 'Back', activity_logs_path %>
+    </div>
+</body>
+</html>
