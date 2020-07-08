@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :activities
     resources :assistants
     resources :babies do
-      resources :activity_logs, only: [:index]
+      resources :activity_logs
     end
     resources :activity_logs
   end
