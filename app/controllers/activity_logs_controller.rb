@@ -1,5 +1,7 @@
 class ActivityLogsController < ApplicationController
 
+  load_and_authorize_resource
+
   def index
     @activity_logs = ActivityLog.all.order(start_time: :desc)
     if (params[:baby_id].present? || params[:assistant_id].present?)

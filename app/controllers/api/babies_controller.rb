@@ -1,4 +1,4 @@
-class Api::BabiesController < ApplicationController
+class Api::BabiesController < ApiController
 
   def index
     @babies = Baby.all

@@ -30,11 +30,17 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'validates_timeliness', '~> 5.0.0.beta1'
+gem 'devise'
+gem 'toastr-rails'
+gem 'rails_admin', '~> 2.0'
+gem 'cancancan'
+gem 'knock'
+gem 'jwt'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
