@@ -22,4 +22,4 @@
 .idea/
 *.ipr
 *.iws
-*.lock
+Gemfile.lock

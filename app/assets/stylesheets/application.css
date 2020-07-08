@@ -12,20 +12,4 @@
  *
  *= require_tree .
  *= require_self
- *= require_toastr
  */
-
-$body-bg: #e2e2e2;
-
-$theme-colors: (
-        "primary": #FF304F,
-        "secondary": #CACACA,
-        "success": #015668,
-        "info": #0F81C7,
-        "warning": #0DE2EA,
-        "danger": #06648C,
-        "light": #ececec,
-        "dark": #222222
-);
-
-@import "bootstrap";

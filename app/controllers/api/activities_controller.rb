@@ -1,10 +1,11 @@
 
-class Api::ActivitiesController < ApiController
-
+class Api::ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.all
-    render json: @activities
+    respond_to do |format|
+      format.json { render :json => @activities }
+    end
   end
 
 end
