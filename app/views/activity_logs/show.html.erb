@@ -8,17 +8,15 @@
 <body>
 
 <div class="container">
-  <h2>Log de Actividades</h2>
-
-  <h1><%= @activity_log.baby.name %></h1>
+  <h2>Detalle de la Actividad</h2>
 
   <p>
-    <strong>Price: </strong> $<%= @activity_log.baby.name %><br />
-    <strong>Subject :</strong> <%= @activity_log.assistant.name %><br />
-    <strong>Created Date:</strong> <%= @activity_log.activity.name %><br />
-    <strong>Price: </strong> $<%= format_date(@activity_log.start_time) %><br />
-    <strong>Subject :</strong> <%= status(@activity_log.duration) %><br />
-    <strong>Created Date:</strong> <%= duration(@activity_log.duration) %><br />
+    <strong>Nombre del bebé : </strong> $<%= @activity_log.baby.name %><br />
+    <strong>Asistente :</strong> <%= @activity_log.assistant.name %><br />
+    <strong>Actividad :</strong> <%= @activity_log.activity.name %><br />
+    <strong>Inicio : </strong> $<%= format_date(@activity_log.start_time) %><br />
+    <strong>Estatus :</strong> <%= status(@activity_log.duration) %><br />
+    <strong>Duración :</strong> <%= duration(@activity_log.duration) %><br />
   </p>
   <hr />
 

@@ -38,7 +38,7 @@
           <th>Inicio</th>
           <th>Estatus</th>
           <th>Duración</th>
-          <th colspan="3">Opciones</th>
+          <th></th>
       </tr>
     </thead>
     <tbody>
@@ -52,12 +52,6 @@
           <td><%= duration(activity.duration) %></td>
           <td>
             <%= link_to "Ver", {:action => 'show', :id => activity.id} -%>
-          </td>
-          <td>
-            <%= link_to "Editar" -%>
-          </td>
-          <td>
-            <%= link_to "Eliminar" -%>
           </td>
         </tr>
         <% } %>
