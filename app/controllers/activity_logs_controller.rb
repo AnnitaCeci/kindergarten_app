@@ -9,5 +9,9 @@ class ActivityLogsController < ApplicationController
     end
   end
 
+  def show
+    @activity_logs = ActivityLog.find_by(params[:id])
+  end
+
 
 end
