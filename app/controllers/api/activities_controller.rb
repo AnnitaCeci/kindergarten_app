@@ -1,5 +1,5 @@
 
-class Api::ActivitiesController < ApplicationController
+class Api::ActivitiesController < Api::ApiController
 
   def index
     @activities = Activity.all
