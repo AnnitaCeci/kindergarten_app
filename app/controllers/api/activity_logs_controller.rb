@@ -1,4 +1,6 @@
-class Api::ActivityLogsController < ApiController
+
+class Api::ActivityLogsController < Api::ApiController
+
 
   def index
     @baby_activities = ActivityLog.find_by_baby_id(params[:baby_id])
