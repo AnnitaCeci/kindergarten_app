@@ -2,7 +2,7 @@
 class Api::ActivityLogsController < Api::ApiController
 
   #GET /babies/:id/activity_logs
-  def show
+  def index
     @baby_activities = ActivityLog.find_by_baby_id(params[:baby_id])
     render json: @baby_activities , status: :ok
   end

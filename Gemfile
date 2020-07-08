@@ -39,8 +39,7 @@ gem 'devise'
 gem 'toastr-rails'
 gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
-gem 'knock'
-gem 'jwt'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
