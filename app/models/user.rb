@@ -1,9 +1,12 @@
+
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_secure_password
 
   # Basic password validation, configure to your liking.
   validates_length_of       :password, maximum: 72, minimum: 8, allow_nil: true, allow_blank: false
@@ -18,6 +21,8 @@ class User < ApplicationRecord
   validates_presence_of     :username
   validates_uniqueness_of   :email
   validates_uniqueness_of   :username
+
+  alias_attribute :password_digest, :password_confirmation
 
   # This method gives us a simple call to check if a user has permission to modify.
   def can_modify_user?(user_id)
