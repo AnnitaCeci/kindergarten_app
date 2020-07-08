@@ -1,9 +1,7 @@
-class Api::BabiesController < ApplicationController
+class Api::BabiesController < ApiController
 
   def index
     @babies = Baby.all
-    respond_to do |format|
-      format.json { render :json => @babies }
-    end
+    render json: @babies
   end
 end

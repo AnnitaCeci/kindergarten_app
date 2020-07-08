@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Log de Actividades</h2>
+  <%= form_tag activity_logs_path, method:  :get do %>
+    <div class="row">
+      <div class="col">
+        <label>Bebés</label><br/>
+         <%= select_tag :baby_id,  options_from_collection_for_select(Baby.all, "id", "name"), {prompt: 'Seleccionar Bebé', class: "form-control", id: 'babyId' }%>
+      </div>
+      <div class="col">
+        <label>Asistentes</label><br/>
+        <%= select_tag :assistant_id, options_from_collection_for_select(Assistant.all, "id", "name"), {prompt: 'Seleccionar Asistente', class: "form-control", id: 'assistantId' } %>
+      </div>
+      <div class="col">
+        <label>Estatus</label><br/>
+        <%= select_tag :status,options_for_select(ActivityLogsHelper::STATUS), {prompt: 'Seleccionar Estatus', class: "form-control", id: 'status'} %>
+      </div>
+      <div class="col">
+        <%= submit_tag "Filtrar", name: nil,  class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  <br/>
+  <table class="table " id="activityTable">
+    <thead>
+      <tr>
+          <th>Bebé</th>
+          <th>Asistente</th>
+          <th>Actividad</th>
+          <th>Inicio</th>
+          <th>Estatus</th>
+          <th>Duración</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @activity_logs.each { |activity| %>
+        <tr>
+          <td><%= activity.baby.name %></td>
+          <td><%= activity.assistant.name %></td>
+          <td><%= activity.activity.name %></td>
+          <td><%= format_date(activity.start_time) %></td>
+          <td><%= status(activity.duration) %></td>
+          <td><%= duration(activity.duration) %></td>
+        </tr>
+        <% } %>
+        </tbody>
+      </table>
+  </div>
+
+<script>
+    $(document).ready(function(){
+        $(".btn-primary:first").click(function(){
+            $(this).button('toggle');
+            var babyValue = $('select#babyId').val();
+            var assistantValue = $('select#assistantId').val();
+            var statusValue = $('select#status').val();
+            $("#activityTable").append html
+        });
+    });
+</script>
+
+
+</body>
+</html>
