@@ -12,20 +12,16 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 #Cache bundle install
-WORKDIR /tmp
-ADD ./Gemfile Gemfile
-ADD ./Gemfile.lock Gemfile.lock
-ADD dump.sql /tmp/dump.sql
-ADD init_db.sh /tmp/init_db.sh
-RUN bundle install
-RUN bundle config build.nokogiri --use-system-libraries
-ENV APP_ROOT /workspace
-RUN mkdir -p $APP_ROOT
-WORKDIR $APP_ROOT
-COPY . $APP_ROOT
+RUN mkdir /myapp
+WORKDIR /myapp
+COPY ./Gemfile /myapp/Gemfile
+COPY ./Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install 
+COPY . /myapp
+
+# Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
-RUN chmod +x /tmp/init_db.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE  3000
 CMD rm -f tmp/pids/server.pid && rails s -b '0.0.0.0'
