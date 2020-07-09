@@ -3,7 +3,9 @@ class ActivityLogsController < ApplicationController
   load_and_authorize_resource
 
   def index
-      @activity_logs = ActivityLog.where(get_conditions).order(start_time: :desc)
+      @activity_logs = ActivityLog.where(get_conditions)
+      @activity_logs = @activity_logs.where.not(stop_time: nil) if 'Terminada' == params[:status]
+      @activity_logs = @activity_logs.order(start_time: :desc)
   end
 
   def show
@@ -23,9 +25,14 @@ class ActivityLogsController < ApplicationController
     if params[:status] == 'En Progreso'
       conditions[:stop_time] = [true, nil]
     end
-    if params[:status] == 'Terminada'
-      conditions[:stop_time] = 'IS NOT NULL'
-    end
+=begin
+     if params[:status] == 'Terminada'
+     conditions[:stop_time] = 'IS NOT NULL'
+     end
+=end
+
+
+
     conditions
   end
 
