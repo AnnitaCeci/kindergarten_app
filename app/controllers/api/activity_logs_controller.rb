@@ -1,4 +1,3 @@
-
 class Api::ActivityLogsController < Api::ApiController
 
   #GET /babies/:id/activity_logs
