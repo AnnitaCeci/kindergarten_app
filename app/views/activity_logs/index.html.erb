@@ -13,15 +13,15 @@
     <div class="row">
       <div class="col">
         <label>Bebés</label><br/>
-         <%= select_tag :baby_id,  options_from_collection_for_select(Baby.all, "id", "name"), {prompt: 'Seleccionar Bebé', class: "form-control", id: 'babyId' }%>
+         <%= select_tag :baby_id,  options_from_collection_for_select(Baby.all, "id", "name", params[:baby_id]), {prompt: 'Seleccionar Bebé', class: "form-control", id: 'babyId' }%>
       </div>
       <div class="col">
         <label>Asistentes</label><br/>
-        <%= select_tag :assistant_id, options_from_collection_for_select(Assistant.all, "id", "name"), {prompt: 'Seleccionar Asistente', class: "form-control", id: 'assistantId' } %>
+        <%= select_tag :assistant_id, options_from_collection_for_select(Assistant.all, "id", "name", params[:assistant_id]), {prompt: 'Seleccionar Asistente', class: "form-control", id: 'assistantId' } %>
       </div>
       <div class="col">
         <label>Estatus</label><br/>
-        <%= select_tag :status,options_for_select(ActivityLogsHelper::STATUS), {prompt: 'Seleccionar Estatus', class: "form-control", id: 'status'} %>
+        <%= select_tag :status,options_for_select(ActivityLogsHelper::STATUS, params[:status]), {prompt: 'Seleccionar Estatus', class: "form-control", id: 'status'} %>
       </div>
       <div class="col">
         <%= submit_tag "Filtrar", name: nil,  class: "btn btn-primary" %>
@@ -58,19 +58,5 @@
         </tbody>
       </table>
   </div>
-
-<script>
-    $(document).ready(function(){
-        $(".btn-primary:first").click(function(){
-            $(this).button('toggle');
-            var babyValue = $('select#babyId').val();
-            var assistantValue = $('select#assistantId').val();
-            var statusValue = $('select#status').val();
-            $("#activityTable").append html
-        });
-    });
-</script>
-
-
 </body>
 </html>
