@@ -1,6 +1,6 @@
 module ActivityLogsHelper
 
-  STATUS = ['Terminada', 'En Progreso']
+  STATUS = ['Terminada', 'En Progreso'].freeze
 
   def status(duration)
     duration ? 'Terminada' : 'En Progreso'
