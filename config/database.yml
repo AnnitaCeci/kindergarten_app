@@ -9,7 +9,7 @@ default: &default
 development:
   <<: *default
   database: dev
-
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
 test:
   <<: *default
   database: dev
@@ -17,3 +17,4 @@ test:
 production:
   <<: *default
   database: dev
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
