@@ -10,6 +10,6 @@ module ActivityLogsHelper
     duration ? duration.to_s + ' min' : '*'
   end
   def format_date(date)
-    date.strftime '%Y-%m-%d %H:%M'
+    date ? (date.strftime '%Y-%m-%d %H:%M') : "Pendiente"
   end
 end
