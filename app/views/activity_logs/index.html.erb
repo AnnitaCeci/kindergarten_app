@@ -29,7 +29,11 @@
     </div>
   <% end %>
   <br/>
-  <table class="table " id="activityTable">
+  <% if @activity_logs.empty? %>
+    <p> No se encontraron resultados </p>
+  <%else %>
+<div class="table-responsive">
+  <table  id="activityTable" class="table table-striped table-bordered">
     <thead>
       <tr>
           <th>Bebé</th>
@@ -42,7 +46,8 @@
       </tr>
     </thead>
     <tbody>
-      <% @activity_logs.each { |activity| %>
+
+         <% @activity_logs.each { |activity| %>
         <tr>
           <td><%= activity.baby.name %></td>
           <td><%= activity.assistant.name %></td>
@@ -56,7 +61,11 @@
         </tr>
         <% } %>
         </tbody>
+
       </table>
-  </div>
+</div>
+    </div>
+    <%end %>
+
 </body>
 </html>
