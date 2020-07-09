@@ -38,7 +38,10 @@ class Ability
       can :manage, :dashboard         # allow access to dashboard
     end
     if user.supervisor_role?
-      can :manage, User
+      can :manage, :all
+    end
+    if user.user_role?
+      can :manage, :user
     end
 
   end

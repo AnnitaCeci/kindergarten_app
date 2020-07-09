@@ -1,9 +1,8 @@
-
 class Api::ActivityLogsController < Api::ApiController
 
   #GET /babies/:id/activity_logs
   def index
-    @baby_activities = ActivityLog.find_by_baby_id(params[:baby_id])
+    @baby_activities = ActivityLog.where(baby_id: params[:baby_id])
     render json: @baby_activities , status: :ok
   end
 
@@ -38,10 +37,10 @@ class Api::ActivityLogsController < Api::ApiController
     begin
     @activity_log = ActivityLog.find_by(id: params[:id])
     @activity_log.destroy
-    render json: {:message => "Your Log has been deleted"} , status: :ok
+    render json: {:message => "El registro ha sido Eliminado"} , status: :ok
 
     rescue
-      render json: {:errors => @activity_log.errors}
+      render json: {:message => "No se pedue eliminar el registro."}, status: :not_found
     end
   end
 

@@ -11,13 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-ligth" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="/">Kindergarten App</a>
       <form class="form-inline">
         <% if user_signed_in? %>
+          <% if current_user.superadmin_role? %>
+            <%= link_to('Dashboard', rails_admin_path, class: 'btn btn-outline-primary') %>
+          <% end %>
           <% if current_user.superadmin_role? || current_user.supervisor_role? %>
             <%= link_to activity_logs_path,  class: 'btn btn-outline-primary' do %>Activity Logs<% end %>
-            <%= link_to('Dashboard', rails_admin_path, class: 'btn btn-outline-primary') %>
           <% end %>
           <%= link_to('Profile', edit_user_registration_path, class: 'btn btn-outline-primary') %>
           <div style="padding-left: 10px;">
