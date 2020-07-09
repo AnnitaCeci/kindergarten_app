@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Detalle de la Actividad</h2>
+
+  <p>
+    <strong>Nombre del bebé : </strong> <%= @activity_log.baby.name %><br />
+    <strong>Asistente :</strong> <%= @activity_log.assistant.name %><br />
+    <strong>Actividad :</strong> <%= @activity_log.activity.name %><br />
+    <strong>Inicio : </strong> <%= format_date(@activity_log.start_time) %><br />
+    <strong>Fin : </strong> <%= format_date(@activity_log.stop_time) %><br />
+    <strong>Estatus :</strong> <%= status(@activity_log.duration) %><br />
+    <strong>Duración :</strong> <%= duration(@activity_log.duration) %><br />
+  </p>
+  <hr />
+
+  <%= link_to 'Back', activity_logs_path %>
+    </div>
+</body>
+</html>

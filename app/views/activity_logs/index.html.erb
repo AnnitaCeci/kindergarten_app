@@ -13,15 +13,15 @@
     <div class="row">
       <div class="col">
         <label>Bebés</label><br/>
-         <%= select_tag :baby_id,  options_from_collection_for_select(Baby.all, "id", "name"), {prompt: 'Seleccionar Bebé', class: "form-control", id: 'babyId' }%>
+         <%= select_tag :baby_id,  options_from_collection_for_select(Baby.all, "id", "name", params[:baby_id]), {prompt: 'Seleccionar Bebé', class: "form-control", id: 'babyId' }%>
       </div>
       <div class="col">
         <label>Asistentes</label><br/>
-        <%= select_tag :assistant_id, options_from_collection_for_select(Assistant.all, "id", "name"), {prompt: 'Seleccionar Asistente', class: "form-control", id: 'assistantId' } %>
+        <%= select_tag :assistant_id, options_from_collection_for_select(Assistant.all, "id", "name", params[:assistant_id]), {prompt: 'Seleccionar Asistente', class: "form-control", id: 'assistantId' } %>
       </div>
       <div class="col">
         <label>Estatus</label><br/>
-        <%= select_tag :status,options_for_select(ActivityLogsHelper::STATUS), {prompt: 'Seleccionar Estatus', class: "form-control", id: 'status'} %>
+        <%= select_tag :status,options_for_select(ActivityLogsHelper::STATUS, params[:status]), {prompt: 'Seleccionar Estatus', class: "form-control", id: 'status'} %>
       </div>
       <div class="col">
         <%= submit_tag "Filtrar", name: nil,  class: "btn btn-primary" %>
@@ -29,7 +29,11 @@
     </div>
   <% end %>
   <br/>
-  <table class="table " id="activityTable">
+  <% if @activity_logs.empty? %>
+    <p> No se encontraron resultados </p>
+  <%else %>
+<div class="table-responsive">
+  <table  id="activityTable" class="table table-striped table-bordered">
     <thead>
       <tr>
           <th>Bebé</th>
@@ -38,10 +42,12 @@
           <th>Inicio</th>
           <th>Estatus</th>
           <th>Duración</th>
+          <th></th>
       </tr>
     </thead>
     <tbody>
-      <% @activity_logs.each { |activity| %>
+
+         <% @activity_logs.each { |activity| %>
         <tr>
           <td><%= activity.baby.name %></td>
           <td><%= activity.assistant.name %></td>
@@ -49,24 +55,17 @@
           <td><%= format_date(activity.start_time) %></td>
           <td><%= status(activity.duration) %></td>
           <td><%= duration(activity.duration) %></td>
+          <td>
+            <%= link_to "Ver", {:action => 'show', :id => activity.id} -%>
+          </td>
         </tr>
         <% } %>
         </tbody>
+
       </table>
-  </div>
-
-<script>
-    $(document).ready(function(){
-        $(".btn-primary:first").click(function(){
-            $(this).button('toggle');
-            var babyValue = $('select#babyId').val();
-            var assistantValue = $('select#assistantId').val();
-            var statusValue = $('select#status').val();
-            $("#activityTable").append html
-        });
-    });
-</script>
-
+</div>
+    </div>
+    <%end %>
 
 </body>
 </html>

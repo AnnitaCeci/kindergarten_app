@@ -1,9 +1,21 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # Include Knock within your application.
+  #  include Knock::Authenticable
+  #protect_from_forgery
+
 
   before_action :authenticate_user!
 
   def after_sign_in_path_for(resource)
-    activity_logs_path
+     if current_user.supervisor_role?
+       activity_logs_path
+     else
+       root_path
+     end
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to  root_url , :alert => exception.message
+  end
+
 end
